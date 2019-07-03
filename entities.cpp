@@ -50,7 +50,7 @@ using namespace std;
     return "Key";
   }
  string Key::use() {
-    return "Can't use alone.";
+    return "You look through the keyhole, nothing out of the ordinary.";
   }
  string Key::use(Entity *entity) {
     return "Key used.";
