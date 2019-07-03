@@ -43,7 +43,7 @@ using namespace std;
     return "Heavy looking box, wonder what's inside.";
   }
  string Crate::pickUp(){
-    return "it's heavy, can't do it.";
+    return "It's heavy, can't do it.";
   }
 
  string Key::name() {
