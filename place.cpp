@@ -12,7 +12,7 @@ Place::Place(vector <string> _contents){
 string Place::observe(){
     string s;
     for (const Item& content: contents){
-        s += " " + content.name();
+        s += "[" + content.name() + "] ";
     }
     return s;
 };
