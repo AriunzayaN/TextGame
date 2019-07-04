@@ -26,7 +26,7 @@ Manager::~Manager(){
     for (int i = 0; i < size(); i++)
     {
         if(allitems[i] != nullptr){
-            delete allitems[i];
+            free(i);
         }
     }
 };
