@@ -16,5 +16,5 @@ public:
     Entity* getEntity();
     int getId() const;
     bool operator==(const Item& item) const;
-    ~Item();
+    void destroy();
 };
