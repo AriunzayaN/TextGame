@@ -1,14 +1,22 @@
 #include "place.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
+template <typename T>
+void passert(T target, T reference){
+    if (target != reference){
+        cout << target << endl;
+        cout << reference << endl;
+        assert(false);
+    }
+}
+
 int main(){
-    cout << "Begin" << endl;
     Place hall({"Axe","Crate","Key"});
-    cout << hall.observe() << endl;
+    passert( hall.observe(), string("Key,Crate,Axe,"));
     hall.remove("Key");
-    cout << log() << endl;    
-    cout << hall.observe() << endl;
+    passert( hall.observe(), string("Crate,Axe,"));
     return 0;
 }
