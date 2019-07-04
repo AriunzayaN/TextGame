@@ -15,14 +15,16 @@ void passert(T target, T reference){
 }
 
 int main(){
-    Manager m = Manager();
     int id;
-    Entity* axe = m.gen("Axe", id);
-
+    Entity* axe = gen("Axe", id);
+    int id1;
+    Entity* key = gen("Key", id1);
     passert(axe->name(), string("Axe"));
-    passert(m.size(), 1);
     passert(id, 0);
-    m.free(0);
+    passert(key->name(), string("Key"));
+    passert(id1,1);
+    free(id);    
+    free(id1);
     cout << "Tests passed." << endl;
 
 

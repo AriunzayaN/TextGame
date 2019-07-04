@@ -1,14 +1,13 @@
 #pragma once
 
-#include "entity.h"
+#include "entities.h"
 #include <vector>
 #include <string>
 
-class Manager {
-    std::vector<Entity*> allitems;
-public:
-    Entity* gen(std::string entityName, int& id);
-    int     size();
-    void    free(int id);
-    ~Manager();
-};
+// Manages all item entities.
+// Gives unique Id's
+// allitems is static/local
+
+Entity* gen(std::string entityName, int& id);
+std::string log();
+void free(int id);
