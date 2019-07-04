@@ -1,16 +1,18 @@
 #include "item.h"
-#include "manager.h"
+#include <iostream>
 
 using namespace std;
 
-Item::Item(string name, Manager* _m){
-    m = _m;
-    entity = m->gen(name, id);
+Item::Item(string name){
+    entity = gen(name, id);
+};
+Item::~Item(){
+    free(id);
 };
 string Item::use(){
     return entity->use();
 };
-string Item::name(){
+string Item::name() const{
     return entity->name();
 };
 string Item::use(Item& item){
@@ -27,4 +29,10 @@ string Item::pickUp(){
 };
 Entity* Item::getEntity(){
     return entity;
+};
+int Item::getId() const{
+    return id;    
+};
+bool Item::operator==(const Item& item) const{
+    return id == item.getId();
 };

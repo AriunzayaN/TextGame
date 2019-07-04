@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+// Skeleton for all Entity items.
+
 class Entity{
 public:
   virtual std::string use();
