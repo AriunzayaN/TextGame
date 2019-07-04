@@ -18,3 +18,6 @@ manager: manager.h manager.cpp entity.cpp entity.h entities.cpp entities.h manag
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp manager_test.cpp -o manager.exe
 	./manager.exe
 	
+item: item.h item.cpp entity.cpp entity.h entities.cpp entities.h manager.h manager.cpp item_test.cpp clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp item.cpp item_test.cpp -o item.exe
+	./item.exe	
