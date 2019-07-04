@@ -15,8 +15,8 @@ void passert(T target, T reference){
 
 int main(){
     Place hall({"Axe","Crate","Key"});
-    passert( hall.observe(), string("Key,Crate,Axe,"));
+    passert( hall.observe(), string("[Key] [Crate] [Axe] "));
     hall.remove("Key");
-    passert( hall.observe(), string("Crate,Axe,"));
+    passert( hall.observe(), string("[Crate] [Axe] "));
     return 0;
 }
