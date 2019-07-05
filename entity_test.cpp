@@ -6,8 +6,8 @@
 using namespace std;
 
 int main(){
-    Entity e;
-    assert(e.name() == "oopsie, shouldn't happen");
+    Entity *e = new Entity("dolly");
+    assert(e->name() == "dolly");
     cout << "ENTITY TEST PASS" << endl;
     return 0;
 }

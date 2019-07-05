@@ -1,45 +1,55 @@
+#include <iostream>
 #include "manager.h"
-
 using namespace std;
 
-static vector<Entity*> allEntities;
 
-Entity* gen(string entityName, int& id){
-    id = allEntities.size();
-    if(entityName == "Axe"){
-        allEntities.push_back( new Axe());
-    }else if(entityName == "Crate"){
-        allEntities.push_back( new Crate());
-    }else if(entityName == "Key"){
-        allEntities.push_back(new Key());
+static map<string, Entity*> allEntities;
+static map<string, Place*> allPlaces;
+
+void loadAllPlaces(vector<string>& places){
+    for (auto& place: places){
+        allPlaces[place] = new Place(place);
     }
-    return allEntities.back();
+    allPlaces["inventory"] = new Place("inventory");
+    allPlaces["current"] = allPlaces[places[0]];
 };
 
-string log(){
-    string msg = "log: ";
-    for(auto e: allEntities){
-        if(e == nullptr){
-            msg += "null";
+void loadAllEntities(map<string, vector<string>>& entities){
+    for(auto& entity: entities){
+        string classname = entity.second[0];
+        string location  = entity.second[1];
+        if(classname == "Axe"){
+            allEntities[entity.first] = new Axe();    
+        }
+        else if(classname == "Key"){
+            allEntities[entity.first] = new Key();    
+        }
+        else if(classname == "Crate"){
+            allEntities[entity.first] = new Crate();    
         }
         else{
-            msg += e->name();
+            cout << "Unknown entity class name " + classname << endl;
+            exit(1);
         }
-        msg += ",";
+        getPlace(location)->add(entity.first);
     }
-    return msg;
-}
-
-void free(int id){
-    delete allEntities[id];
-    allEntities[id] = nullptr;
 };
 
-void freeAll(){
-    for(auto& e: allEntities){
-        if(e){
-            delete e;
-            e = nullptr;
-       }
-    }    
-}
+void loadTheGame(vector<string> gameState){
+    
+};
+
+Entity* getEntity(std::string entityName){
+    if(allEntities.find(entityName) == allEntities.end()){
+        cout << "Unknown entity name " << entityName << endl;
+        exit(1);
+    }
+    return allEntities[entityName];
+};
+Place* getPlace(std::string placeName){
+    if(allPlaces.find(placeName) == allPlaces.end()){
+        cout << "Unknown place name " << placeName << endl;
+        exit(1);
+    }
+    return allPlaces[placeName];
+};

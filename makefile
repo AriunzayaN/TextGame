@@ -18,16 +18,7 @@ manager: manager.h manager.cpp entity.cpp entity.h entities.cpp entities.h manag
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp manager_test.cpp -o manager.exe
 	./manager.exe
 	
-item: item.h item.cpp entity.cpp entity.h entities.cpp entities.h manager.h manager.cpp item_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp item.cpp item_test.cpp -o item.exe
-	./item.exe	
-
-place: item.h item.cpp entity.cpp entity.h entities.cpp entities.h manager.h manager.cpp  \
+place: entity.cpp entity.h entities.cpp entities.h manager.h manager.cpp  \
 		place.h place.cpp place_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp item.cpp place.cpp place_test.cpp -o place.exe
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp place.cpp place_test.cpp -o place.exe
 	./place.exe
-
-player: player.h player.cpp item.h item.cpp entity.cpp entity.h entities.cpp entities.h manager.h manager.cpp  \
-		place.h place.cpp player_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp item.cpp place.cpp player.cpp player_test.cpp -o player.exe
-	./player.exe
