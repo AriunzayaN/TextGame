@@ -22,7 +22,7 @@ int main(){
 
     Entity* c = new Crate({"Base crate"});
     passert( c->name() , "Base crate"); 
-    // passert( a->use(c) , "Swung Fire axe Box broke open and you see gold inside.");
+    passert( a->use(c) , "Swung Fire axe Box broke open and you see gold inside.");
     passert( c->pickUp() , "It's heavy, can't do it.");
 
 

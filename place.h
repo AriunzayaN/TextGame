@@ -3,11 +3,10 @@
 
 class Place {
     std::string name;
-    std::set<std::string> entities;
+    std::set<std::string> contentNames;
 public:
     Place(std::string);
     std::string observe();
     std::string add(std::string);
-    std::string pickup(std::string);
     std::string remove(std::string);
 };

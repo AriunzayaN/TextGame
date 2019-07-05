@@ -39,7 +39,7 @@ string Crate::use(Entity *entity){
   return "It's heavy, not sure how to use it.";
 }
 string Crate::targeted(Entity *entity){
-  if(entity->name() == "Axe"){
+  if(entity->name() == "Fire axe"){
     return "Box broke open and you see gold inside.";
   }
   else{
