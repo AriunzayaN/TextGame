@@ -8,7 +8,7 @@ public:
     Player( Place* place);
     ~Player( );
     std::string observe();
-    std::string inventory();
+    std::string lookInventory();
     std::string use(std::string name);
     std::string observe(std::string name);
     std::string pickUp(std::string name);
