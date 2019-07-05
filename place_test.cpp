@@ -14,9 +14,16 @@ void passert(T target, T reference){
 }
 
 int main(){
-    Place hall({"Axe","Crate","Key"});
-    passert( hall.observe(), string("[Key] [Crate] [Axe] "));
-    hall.remove("Key");
-    passert( hall.observe(), string("[Crate] [Axe] "));
+    Place hall("Hall",{"Axe","Crate","Key"});
+    passert( hall.observe(), string("[Axe] [Crate] [Key] "));
+    passert( hall.remove("Key"), string("Key removed from Hall"));
+    passert( hall.observe(), string("[Axe] [Crate] "));
+    passert( log(), string("log: Axe,Crate,Key,"));
+    Place room("Room",{"Key"});
+    passert(room.pickup("Key", hall), string("Key added to Hall"));
+    passert(hall.observe(), string("[Axe] [Crate] [Key] "));
+    passert(room.observe(), string(""));
+    passert( log(), string("log: Axe,Crate,Key,Key,"));
+    cout << "Place test Pass" << endl;
     return 0;
 }

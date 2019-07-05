@@ -6,6 +6,7 @@ class Item{
     Entity* entity;
     int id;
 public:
+    Item();
     Item(std::string name);
     std::string use();
     std::string name() const;
@@ -16,5 +17,6 @@ public:
     Entity* getEntity();
     int getId() const;
     bool operator==(const Item& item) const;
+    Item& operator=(Item& item);
     void destroy();
 };
