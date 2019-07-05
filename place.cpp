@@ -40,3 +40,7 @@ string Place::remove(std::string _name){
     items.erase(_name);
     return _name + " removed from " + name;
 }
+
+Item& Place::getItem(string name){
+    return items[name];
+}
