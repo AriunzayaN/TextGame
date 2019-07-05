@@ -13,4 +13,5 @@ public:
     bool contains(std::string);
     std::string pickup(std::string, Place&);
     std::string remove(std::string);
+    Item& getItem(std::string);
 };
