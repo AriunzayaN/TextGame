@@ -26,3 +26,8 @@ place: item.h item.cpp entity.cpp entity.h entities.cpp entities.h manager.h man
 		place.h place.cpp place_test.cpp clean
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp item.cpp place.cpp place_test.cpp -o place.exe
 	./place.exe
+
+player: player.h player.cpp item.h item.cpp entity.cpp entity.h entities.cpp entities.h manager.h manager.cpp  \
+		place.h place.cpp player_test.cpp clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp item.cpp place.cpp player.cpp player_test.cpp -o player.exe
+	./player.exe

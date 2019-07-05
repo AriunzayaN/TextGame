@@ -18,11 +18,14 @@ int main(){
     Item c("Crate");
     passert(a.use(c), string("Swung Axe Box broke open and you see gold inside."));
     Item k("Key");
+    c.destroy();
+    passert(log(), string("log: Axe,null,Key,"));
     passert(k.name(), string("Key"));
     passert(k.getId(), 2);
     Item x("Key");
     passert(k == a , false);
     passert(k == x, false);
+    freeAll();
     cout << "Tests passed." << endl;
     return 0;
 }

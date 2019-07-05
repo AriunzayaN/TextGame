@@ -13,6 +13,7 @@ public:
 class Place {
     std::unordered_set<Item, ItemHash> contents;
 public:
+    Place();
     Place(std::vector<std::string> _contents);
     std::string observe();
     void remove(std::string name);

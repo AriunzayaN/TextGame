@@ -34,3 +34,12 @@ void free(int id){
     delete allEntities[id];
     allEntities[id] = nullptr;
 };
+
+void freeAll(){
+    for(auto& e: allEntities){
+        if(e){
+            delete e;
+            e = nullptr;
+       }
+    }    
+}

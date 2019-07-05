@@ -11,3 +11,4 @@
 Entity* gen(std::string entityName, int& id);
 std::string log();
 void free(int id);
+void freeAll();

@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Place::Place(){
+    ;
+}
+
 Place::Place(vector <string> _contents){
     for (string content: _contents){
         contents.emplace(content);

@@ -6,7 +6,7 @@ using namespace std;
 Item::Item(string name){
     entity = gen(name, id);
 };
-Item::~Item(){
+void Item::destroy(){
     free(id);
 };
 string Item::use(){
