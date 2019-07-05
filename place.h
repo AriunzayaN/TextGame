@@ -1,21 +1,16 @@
 #include "item.h"
-#include <unordered_set>
-#include <functional>
-
-
-class ItemHash{
-public:
-    size_t operator()(const Item& item) const{
-        return std::hash<int>()(item.getId());
-    }
-};
+#include <map>
+#include <utility>
 
 class Place {
-    std::unordered_set<Item, ItemHash> contents;
+    std::string name;
+    std::map<std::string, Item> items;
 public:
     Place();
-    Place(std::vector<std::string> _contents);
+    Place(std::string, std::vector<std::string> );
     std::string observe();
-    void remove(std::string name);
-
+    std::string add(Item);
+    bool contains(std::string);
+    std::string pickup(std::string, Place&);
+    std::string remove(std::string);
 };

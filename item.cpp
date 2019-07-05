@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Item::Item(){}
+
 Item::Item(string name){
     entity = gen(name, id);
 };
@@ -36,3 +38,9 @@ int Item::getId() const{
 bool Item::operator==(const Item& item) const{
     return id == item.getId();
 };
+
+Item& Item::operator=(Item& item){
+    entity = item.getEntity();
+    id = item.getId();
+    return *this;
+}
