@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include "manager.h"
+#include "parser.h"
+
 using namespace std;
 
 
@@ -37,18 +38,6 @@ void loadAllEntities(vector<vector<string>>& entities){
         getPlace(location)->add(entity[0]);
     }
 };
-
-vector<string> split(string str){
-    stringstream ss;
-    ss << str;
-    vector<string> entitySetup;
-    string name;
-    while (ss >> name){
-        entitySetup.push_back(name);
-    };
-    return entitySetup;
-}
-
 
 void loadTheGame(string fileName){
     ifstream stateFile(fileName);

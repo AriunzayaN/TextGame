@@ -19,6 +19,10 @@ entities: entity.cpp entity.h entities.cpp entities.h entities_test.cpp clean
 	./entities.exe
 
 manager: manager.h manager.cpp entity.cpp entity.h entities.cpp entities.h \
-		place.h place.cpp manager_test.cpp clean
+		parser.h parser.cpp place.h place.cpp manager_test.cpp clean
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp manager.cpp manager_test.cpp -o manager.exe
 	./manager.exe
+
+parser: parser.h parser.cpp clean
+	$(CXX) $(CXXFLAGS) parser.cpp parser_test.cpp -o parser.exe
+	./parser.exe
