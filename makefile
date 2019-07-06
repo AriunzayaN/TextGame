@@ -5,19 +5,20 @@ CXXFLAGS = -std=c++14
 
 clean:
 	rm -f *.exe
+	
+place: place.h place.cpp place_test.cpp clean
+	$(CXX) $(CXXFLAGS) place.cpp place_test.cpp -o place.exe
+	./place.exe
 
-entity: entity.cpp entity.h entity_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entity_test.cpp -o entity.exe
+entity: place.h place.cpp entity.cpp entity.h entity_test.cpp clean
+	$(CXX) $(CXXFLAGS) place.cpp entity.cpp entity_test.cpp -o entity.exe
 	./entity.exe
 
 entities: entity.cpp entity.h entities.cpp entities.h entities_test.cpp clean
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp entities_test.cpp -o entities.exe
 	./entities.exe
 
-manager: manager.h manager.cpp entity.cpp entity.h entities.cpp entities.h manager_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp manager_test.cpp -o manager.exe
+manager: manager.h manager.cpp entity.cpp entity.h entities.cpp entities.h \
+		place.h place.cpp manager_test.cpp clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp manager.cpp manager_test.cpp -o manager.exe
 	./manager.exe
-	
-place: place.h place.cpp place_test.cpp clean
-	$(CXX) $(CXXFLAGS) place.cpp place_test.cpp -o place.exe
-	./place.exe

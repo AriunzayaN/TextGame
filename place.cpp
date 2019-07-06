@@ -5,6 +5,10 @@ using namespace std;
 
 
 Place::Place(string _name):name(_name){}
+
+string Place::getName(){
+    return name;
+}
 string Place::observe(){
     string s;
     for (auto& name: contentNames){

@@ -1,0 +1,4 @@
+hall basement kitchen
+Fire-axe Axe hall
+Big-crate Crate basement
+Old-key Key N/A 

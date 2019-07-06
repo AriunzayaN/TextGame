@@ -1,12 +1,12 @@
 #include "entities.h"
 #include <iostream>
 using namespace std;
+
+
 /*
   Axe
- */
-
-
-Axe::Axe(vector<string> setup):Entity(setup.front()){
+*/
+Axe::Axe(vector<string> setup):Entity(setup[0], setup[2]){
   ;
 }
 
@@ -28,8 +28,8 @@ string Axe::pickUp(){
 
 /*
   Crate
- */
-Crate::Crate(vector<string> setup):Entity(setup.front()){
+*/
+Crate::Crate(vector<string> setup):Entity(setup[0], setup[2]){
   ;
 }
 string Crate::use(){
@@ -55,9 +55,8 @@ string Crate::pickUp(){
 
 /*
   Key
- */
-
-Key::Key(vector<string> setup):Entity(setup.front()){
+*/
+Key::Key(vector<string> setup):Entity(setup[0], setup[2]){
   ;
 }
 string Key::use() {

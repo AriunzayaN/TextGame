@@ -6,6 +6,7 @@ class Place {
     std::set<std::string> contentNames;
 public:
     Place(std::string);
+    std::string getName();
     std::string observe();
     std::string add(std::string);
     std::string remove(std::string);

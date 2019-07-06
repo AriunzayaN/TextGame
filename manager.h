@@ -6,7 +6,9 @@
 #include <vector>
 #include <string>
 
-void loadTheGame(std::vector<std::string>);
+void loadTheGame(std::string);
 
 Entity* getEntity(std::string);
 Place* getPlace(std::string);
+
+std::string log();
