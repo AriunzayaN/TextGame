@@ -6,7 +6,7 @@ using namespace std;
 /*
   Axe
 */
-Axe::Axe(vector<string> setup):Entity(setup[0], setup[2], setup[1]){
+Axe::Axe(vector<string> setup):Entity(setup[0], setup[1], setup[2]){
   ;
 }
 string Axe::use(){
@@ -28,7 +28,7 @@ string Axe::pickUp(){
 /*
   Crate
 */
-Crate::Crate(vector<string> setup):Entity(setup[0], setup[2], setup[1]){
+Crate::Crate(vector<string> setup):Entity(setup[0], setup[1], setup[2]){
   ;
 }
 string Crate::use(){
@@ -55,7 +55,7 @@ string Crate::pickUp(){
 /*
   Key
 */
-Key::Key(vector<string> setup):Entity(setup[0], setup[2], setup[1]){
+Key::Key(vector<string> setup):Entity(setup[0], setup[1], setup[2]){
   ;
 }
 string Key::use() {
@@ -80,7 +80,7 @@ string Key::pickUp(){
 /*
   Door
 */
-Door::Door(vector<string> setup):Entity(setup[0], setup[2], setup[1]){
+Door::Door(vector<string> setup):Entity(setup[0], setup[1], setup[2]){
   state = setup[3];
   targetPlace = setup[4];
   keyName = setup[5];

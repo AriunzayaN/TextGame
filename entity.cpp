@@ -2,8 +2,8 @@
 #include "entity.h"
 using namespace std;
 
-Entity::Entity(string _entityName, string _placeName, string _className)
-    :entityName(_entityName),placeName(_placeName), className(_className){}
+Entity::Entity(string _entityName, string _className, string _placeName)
+    :entityName(_entityName), className(_className), placeName(_placeName){}
 
 
 string Entity::name(){
