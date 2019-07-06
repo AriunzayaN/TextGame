@@ -46,11 +46,11 @@ void loadTheGame(string fileName){
     ifstream stateFile(fileName);
     string token;
     getline(stateFile, token);
-    loadAllPlaces(split(token));
+    loadAllPlaces(split(token, false));
     
     vector<vector<string>> entitiesSetup;
     while(getline(stateFile, token)){
-        entitiesSetup.push_back(split(token));
+        entitiesSetup.push_back(split(token, false));
     }
     loadAllEntities(entitiesSetup);
 };

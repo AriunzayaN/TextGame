@@ -15,7 +15,7 @@ void passert(T target, T reference){
 
 void valid_input_test();
 int main(){
-    auto v = split("woo waa wee");
+    auto v = split("woo waa wee", true);
     passert(v[0], string("woo"));
     passert(v[1], string("waa"));
     passert(v[2], string("wee"));
@@ -25,12 +25,12 @@ int main(){
 }
 
 void valid_input_test(){
-    passert(valid_input(split("USE")), false );
-    passert(valid_input(split("USE stuff ON ?")), false );
-    passert(valid_input(split("USE stuff ON lala-land")), true );
-    passert(valid_input(split("HIT stuff ON lala-land")), false );
-    passert(valid_input(split("HIT stuff with lala-land")), true );
-    passert(valid_input(split("GET >>")), false);
-    passert(valid_input(split("Get life")), true );
-    passert(valid_input(split("?? life")), false );    
+    passert(valid_input(split("USE",true)), false );
+    passert(valid_input(split("USE stuff ON ?",true)), false );
+    passert(valid_input(split("USE stuff ON lala-land",true)), true );
+    passert(valid_input(split("HIT stuff ON lala-land",true)), false );
+    passert(valid_input(split("HIT stuff with lala-land",true)), true );
+    passert(valid_input(split("GET >>",true)), false);
+    passert(valid_input(split("Get life",true)), true );
+    passert(valid_input(split("?? life",true)), false );    
 };
