@@ -1,4 +1,4 @@
-#include "entities.h"
+#include "manager.h"
 #include <iostream>
 using namespace std;
 
@@ -76,3 +76,32 @@ string Key::observe() {
 string Key::pickUp(){
   return "Picked up " + name() + ".";
 }
+
+
+/*
+  Door
+*/
+//   Door::Door(vector<string> setup):Entity(setup[0], setup[2]){
+//   ;
+// }
+// string Door::use() {
+//   if(state == "close"){
+//     return "Seem to be locked";
+//   }else{
+
+//   }
+// };
+// string Door::use(Entity *entity) {
+//  return "s";
+// };
+// string Door::targeted(Entity *entity) {
+//  return "s";
+
+// };
+// string Door::observe() {
+//  return "s";
+
+// };
+// string Door::pickUp() {
+//  return "s";
+// };
