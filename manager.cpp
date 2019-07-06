@@ -83,6 +83,7 @@ string pickEntityUp(string entity){
 string playerCommand(vector<string> command){
     if(command.size() == 1){
         return allPlaces["current"]->observe();
+
     }else if(command.size() == 2){
         if(command[0] == "use"){
             if(allPlaces["current"]->contains(command[1]) ||
@@ -107,8 +108,33 @@ string playerCommand(vector<string> command){
                 return command[1] + " not present";
             }
         }
+
     }else if(command.size() == 4){
-        return "s";
+            if(!allPlaces["current"]->contains(command[1]) &&
+               !allPlaces["inventory"]->contains(command[1])){
+                 return "You don't have access to " + command[1];
+
+
+             }else if(!allPlaces["current"]->contains(command[3]) &&
+                      !allPlaces["inventory"]->contains(command[3])){
+                 return "You don't have access to " + command[3];
+
+
+             }else if(command[0] == "use"){
+                    return allEntities[command[3]]->use(allEntities[command[1]]);
+
+
+             }else if(command[0] == "hit"){
+                set<string> hittables = {"Axe"};
+                if(hittables.count(allEntities[command[3]]->getClassName()) == 1 ){
+                    return allEntities[command[3]]->use(allEntities[command[1]]);
+                }else{
+                    return "You can't hit with " + command[3];
+                }
+
+
+             }
+        
     }
     
     cout << "unknown command " << command[0] << endl;

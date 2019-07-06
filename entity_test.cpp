@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-    Entity *e = new Entity("Dolly", "Hall");
+    Entity *e = new Entity("Dolly", "Hall", "Entity");
     assert(e->name() == "Dolly");
     assert(e->getPlaceName() == "Hall");
     cout << "ENTITY TEST PASS" << endl;
