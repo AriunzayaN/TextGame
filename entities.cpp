@@ -23,7 +23,7 @@ string Axe::observe(){
   return "Red fire axe, looks sharp.";
 }
 string Axe::pickUp(){
-  return "Picked up " + name();
+  return pickEntityUp(name());
 }
 
 /*
@@ -39,7 +39,7 @@ string Crate::use(Entity *entity){
   return "It's heavy, not sure how to use it.";
 }
 string Crate::targeted(Entity *entity){
-  if(entity->name() == "Fire axe"){
+  if(entity->name() == "Fire-axe"){
     return "Box broke open and you see gold inside.";
   }
   else{
@@ -50,7 +50,7 @@ string Crate::observe(){
   return "Heavy looking box, wonder what's inside.";
 }
 string Crate::pickUp(){
-  return "It's heavy, can't do it.";
+  return pickEntityUp(name());
 }
 
 /*
@@ -74,34 +74,42 @@ string Key::observe() {
 }
 
 string Key::pickUp(){
-  return "Picked up " + name() + ".";
+  return pickEntityUp(name());
 }
 
 
 /*
   Door
 */
-//   Door::Door(vector<string> setup):Entity(setup[0], setup[2]){
-//   ;
-// }
-// string Door::use() {
-//   if(state == "close"){
-//     return "Seem to be locked";
-//   }else{
-
-//   }
-// };
-// string Door::use(Entity *entity) {
-//  return "s";
-// };
-// string Door::targeted(Entity *entity) {
-//  return "s";
-
-// };
-// string Door::observe() {
-//  return "s";
-
-// };
-// string Door::pickUp() {
-//  return "s";
-// };
+Door::Door(vector<string> setup):Entity(setup[0], setup[2]){
+  state = setup[3];
+  targetPlace = setup[4];
+  keyName = setup[5];
+}
+string Door::use() {
+  if(state == "close"){
+    return "Seem to be locked";
+  }else{
+    changeCurrentPlace(targetPlace);
+    return "You are now in " + targetPlace;
+  }
+};
+string Door::use(Entity *entity) {
+  return "You can't pick up " + name();
+};
+string Door::targeted(Entity *entity) {
+  if(state == "close" && keyName == entity->name()){
+    state = "open";
+    return entity->name() + " used and " + name() + "opened";
+  }else if(state == "open"){
+    return name() + " already open";
+  }else{
+    return "Wrong key";
+  }
+};
+string Door::observe() {
+ return "It's a " + name();
+};
+string Door::pickUp() {
+ return "Can't pickup";
+};

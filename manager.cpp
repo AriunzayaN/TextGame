@@ -67,6 +67,16 @@ Place* getPlace(std::string placeName){
     return allPlaces[placeName];
 };
 
+void changeCurrentPlace(string place){
+    allPlaces["current"] = allPlaces[place];
+};
+
+string pickEntityUp(string entity){
+    allPlaces["inventory"]->add(entity);
+    allPlaces["current"]->remove(entity);
+    return "Added " + entity + " to inventory";
+};
+
 string log(){
     string s = "places: ";
     for(auto& place: allPlaces){
