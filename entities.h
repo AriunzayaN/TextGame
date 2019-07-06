@@ -3,8 +3,7 @@
 
 class Axe: public Entity{
 public:
-  Axe(): Entity(){};
-  std::string name() override;
+  Axe(std::vector<std::string> setup);
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
@@ -14,8 +13,7 @@ public:
 
 class Crate: public Entity{
 public:
-  Crate(): Entity() {};
-  std::string name() override;
+  Crate(std::vector<std::string> setup);
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
@@ -25,8 +23,7 @@ public:
 
 class Key: public Entity{
 public:
-  Key(): Entity() {};
-  std::string name() override;
+  Key(std::vector<std::string> setup);
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;

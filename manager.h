@@ -1,14 +1,14 @@
 #pragma once
 
 #include "entities.h"
+#include "place.h"
+#include <map>
 #include <vector>
 #include <string>
 
-// Manages all item entities.
-// Gives unique Id's
-// allitems is static/local
+void loadTheGame(std::string);
 
-Entity* gen(std::string entityName, int& id);
+Entity* getEntity(std::string);
+Place* getPlace(std::string);
+
 std::string log();
-void free(int id);
-void freeAll();
