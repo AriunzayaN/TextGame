@@ -38,7 +38,7 @@ string Crate::use(Entity *entity){
   return "It's heavy, not sure how to use it.";
 }
 string Crate::targeted(Entity *entity){
-  if(entity->name() == "Fire-axe"){
+  if(entity->getClassName() == "Axe"){
     return "Box broke open and you see gold inside.";
   }
   else{
@@ -62,7 +62,7 @@ string Key::use() {
   return "You look through the keyhole, nothing out of the ordinary.";
 }
 string Key::use(Entity *entity) {
-  return "Key used.";
+  return "Key used. " + entity->targeted(this);
 }
 string Key::targeted(Entity *entity) {
   return "Can't be used like that.";
@@ -86,7 +86,7 @@ Door::Door(vector<string> setup):Entity(setup[0], setup[1], setup[2]){
   keyName = setup[5];
 }
 string Door::use() {
-  if(state == "close"){
+  if(state == "closed"){
     return "Seem to be locked";
   }else{
     changeCurrentPlace(targetPlace);
@@ -97,9 +97,9 @@ string Door::use(Entity *entity) {
   return "You can't pick up " + name();
 };
 string Door::targeted(Entity *entity) {
-  if(state == "close" && keyName == entity->name()){
+  if(state == "closed" && keyName == entity->name()){
     state = "open";
-    return entity->name() + " used and " + name() + "opened";
+    return entity->name() + " used and " + name() + " opened";
   }else if(state == "open"){
     return name() + " already open";
   }else{

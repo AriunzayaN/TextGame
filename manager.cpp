@@ -53,6 +53,7 @@ void loadTheGame(string fileName){
         entitiesSetup.push_back(split(token, false));
     }
     loadAllEntities(entitiesSetup);
+    cout << "Game loaded " <<  endl;
 };
 
 Entity* getEntity(std::string entityName){
@@ -81,17 +82,15 @@ string pickEntityUp(string entity){
 };
 
 
-
-
 string playerCommand(vector<string> command){
     if(command.size() == 1){
-        commandWithOne(command[0]);
+        return commandWithOne(command[0]);
         
     }else if(command.size() == 2){
-        commandWithTwo(command[0], command[1]);
+        return commandWithTwo(command[0], command[1]);
 
     }else if(command.size() == 4){
-        commandWithFour(command[0], command[1], command[2], command[3]);
+        return commandWithFour(command[0], command[1], command[3]);
     }
     
     cout << "unknown command " << command[0] << endl;
@@ -99,7 +98,14 @@ string playerCommand(vector<string> command){
 };
 
 string commandWithOne(string command){
-    return allPlaces["current"]->observe();
+    if(command == "look" || command == "see")
+        return allPlaces["current"]->observe();
+    else if (command == "inventory")
+        return allPlaces["inventory"]->observe();
+    
+    cout << "unknown command " << command << endl;
+    exit(1);
+    
 };
 
 string commandWithTwo(string command, string entity){
@@ -113,22 +119,27 @@ string commandWithTwo(string command, string entity){
     }else if(command == "get" || command == "grab" ||
                 command == "take"){
         if(allPlaces["current"]->contains(entity) ){
-            return allEntities[entity]->use();
+            return allEntities[entity]->pickUp();
         }else{
             return entity + " not present";
         }
 
-    }else if(command == "look"){
-        if(allPlaces["current"]->contains(entity) ||
+    }else if(command == "look" || command == "see"){
+        if(entity == "inventory"){
+            return allPlaces["inventory"]->observe();
+        }else if(allPlaces["current"]->contains(entity) ||
             allPlaces["inventory"]->contains(entity)){
                 return allEntities[entity]->observe();
             }else{
             return entity + " not present";
         }
     }
+
+    cout << "unknown command " << command << endl;
+    exit(1);
 };
 
-string commandWithFour(string command, string entityOfTarget, string fillerCommand, string entityOfUse){
+string commandWithFour(string command, string entityOfTarget, string entityOfUse){
     if(!allPlaces["current"]->contains(entityOfTarget) &&
         !allPlaces["inventory"]->contains(entityOfTarget)){
         return "You don't have access to " + entityOfTarget;
@@ -140,7 +151,7 @@ string commandWithFour(string command, string entityOfTarget, string fillerComma
 
 
     }else if(command == "use"){
-        return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
+        return allEntities[entityOfTarget]->use(allEntities[entityOfUse]);
 
 
     }else if(command == "hit"){
@@ -152,6 +163,8 @@ string commandWithFour(string command, string entityOfTarget, string fillerComma
         }
     }
 
+    cout << "unknown command " << command << endl;
+    exit(1);
 };
 
 
