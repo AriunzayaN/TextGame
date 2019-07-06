@@ -15,11 +15,16 @@ entity: place.h place.cpp entity.cpp entity.h entity_test.cpp clean
 	./entity.exe
 
 entities: entity.cpp entity.h entities.cpp entities_test.cpp manager.h manager.cpp \
-		 place.h place.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp place.cpp entities_test.cpp -o entities.exe
+		 place.h place.cpp parser.cpp parser.h clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp place.cpp parser.cpp entities_test.cpp -o entities.exe
 	./entities.exe
 
-manager: manager.h manager.cpp entity.cpp entity.h entities.cpp \
-		place.h place.cpp manager_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp manager.cpp manager_test.cpp -o manager.exe
+manager: manager.h manager.cpp entity.cpp entity.h entities.cpp\
+		parser.h parser.cpp place.h place.cpp manager_test.cpp clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp parser.cpp\
+		manager.cpp manager_test.cpp -o manager.exe
 	./manager.exe
+
+parser: parser.h parser.cpp clean
+	$(CXX) $(CXXFLAGS) parser.cpp parser_test.cpp -o parser.exe
+	./parser.exe

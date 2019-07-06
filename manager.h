@@ -2,6 +2,7 @@
 
 #include "place.h"
 #include "entity.h"
+#include "parser.h"
 #include <map>
 #include <vector>
 #include <string>
