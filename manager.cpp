@@ -80,6 +80,41 @@ string pickEntityUp(string entity){
     return "Added " + entity + " to inventory";
 };
 
+string playerCommand(vector<string> command){
+    if(command.size() == 1){
+        return allPlaces["current"]->observe();
+    }else if(command.size() == 2){
+        if(command[0] == "use"){
+            if(allPlaces["current"]->contains(command[1]) ||
+             allPlaces["inventory"]->contains(command[1])){
+                 return allEntities[command[1]]->use();
+             }else{
+                 return command[1] + " not present";
+             }
+        }else if(command[0] == "get" || command[0] == "grab" ||
+                 command[0] == "take"){
+            if(allPlaces["current"]->contains(command[1]) ){
+                return allEntities[command[1]]->use();
+            }else{
+                return command[1] + " not present";
+            }
+
+        }else if(command[0] == "look"){
+            if(allPlaces["current"]->contains(command[1]) ||
+             allPlaces["inventory"]->contains(command[1])){
+                 return allEntities[command[1]]->observe();
+             }else{
+                return command[1] + " not present";
+            }
+        }
+    }else if(command.size() == 4){
+        return "s";
+    }
+    
+    cout << "unknown command " << command[0] << endl;
+    exit(1);
+};
+
 string log(){
     string s = "places: ";
     for(auto& place: allPlaces){

@@ -53,6 +53,7 @@ public:
 void loadTheGame(std::string);
 void loadAllPlaces(std::vector<std::string> places);
 
+std::string playerCommand(std::vector<std::string>);
 Entity* getEntity(std::string);
 Place* getPlace(std::string);
 void changeCurrentPlace(std::string);
