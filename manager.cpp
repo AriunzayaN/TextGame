@@ -30,6 +30,9 @@ void loadAllEntities(vector<vector<string>>& entities){
         else if(classname == "Crate"){
             allEntities[entity[0]] = new Crate(entity);    
         }
+        else if(classname == "Door"){
+            allEntities[entity[0]] = new Door(entity);    
+        }
         else{
             cout << "Unknown entity class name " + classname << endl;
             exit(1);
