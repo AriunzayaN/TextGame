@@ -80,6 +80,81 @@ string pickEntityUp(string entity){
     return "Added " + entity + " to inventory";
 };
 
+
+
+
+string playerCommand(vector<string> command){
+    if(command.size() == 1){
+        commandWithOne(command[0]);
+        
+    }else if(command.size() == 2){
+        commandWithTwo(command[0], command[1]);
+
+    }else if(command.size() == 4){
+        commandWithFour(command[0], command[1], command[2], command[3]);
+    }
+    
+    cout << "unknown command " << command[0] << endl;
+    exit(1);
+};
+
+string commandWithOne(string command){
+    return allPlaces["current"]->observe();
+};
+
+string commandWithTwo(string command, string entity){
+    if(command == "use"){
+            if(allPlaces["current"]->contains(entity) ||
+             allPlaces["inventory"]->contains(entity)){
+                 return allEntities[entity]->use();
+             }else{
+                 return entity + " not present";
+             }
+    }else if(command == "get" || command == "grab" ||
+                command == "take"){
+        if(allPlaces["current"]->contains(entity) ){
+            return allEntities[entity]->use();
+        }else{
+            return entity + " not present";
+        }
+
+    }else if(command == "look"){
+        if(allPlaces["current"]->contains(entity) ||
+            allPlaces["inventory"]->contains(entity)){
+                return allEntities[entity]->observe();
+            }else{
+            return entity + " not present";
+        }
+    }
+};
+
+string commandWithFour(string command, string entityOfTarget, string fillerCommand, string entityOfUse){
+    if(!allPlaces["current"]->contains(entityOfTarget) &&
+        !allPlaces["inventory"]->contains(entityOfTarget)){
+        return "You don't have access to " + entityOfTarget;
+
+
+    }else if(!allPlaces["current"]->contains(entityOfUse) &&
+            !allPlaces["inventory"]->contains(entityOfUse)){
+        return "You don't have access to " + entityOfUse;
+
+
+    }else if(command == "use"){
+        return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
+
+
+    }else if(command == "hit"){
+        set<string> hittables = {"Axe"};
+        if(hittables.count(allEntities[entityOfUse]->getClassName()) == 1 ){
+            return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
+        }else{
+            return "You can't hit with " + entityOfUse;
+        }
+    }
+
+};
+
+
 string log(){
     string s = "places: ";
     for(auto& place: allPlaces){
