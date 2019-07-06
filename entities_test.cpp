@@ -13,23 +13,24 @@ void passert(string target, string reference){
 }
 
 int main(){
-    Entity* a = new Axe({"Fire axe", "Axe", "Hall"});
-    passert( a->name() , "Fire axe");
-    passert( a->pickUp() , "Picked up Fire axe"); 
-    // passert( a->observe() , "Red fire axe, looks sharp.");
-
-
-    Entity* c = new Crate({"Base crate", "Crate","Basement"});
-    passert( c->name() , "Base crate"); 
-    passert( a->use(c) , "Swung Fire axe Box broke open and you see gold inside.");
-    passert( c->pickUp() , "It's heavy, can't do it.");
-
-
-    Entity* k = new Key({"Rusted key", "Key","Basement"});
-    passert( k->name() , "Rusted key"); 
-    passert( k->targeted(c) , "Can't be used like that."); 
-
-    cout << "Tests passed" << endl;
+    cout << "Begin" << endl;
+    loadAllPlaces({"hall", "basement", "kitchen"});
+    Entity* a = new Axe({"Fire-axe", "Axe", "hall"});
+    Entity* c = new Crate({"Big-crate", "Crate", "basement"});
+    Entity* k = new Key({"Old-key", "Key", "N/A"});
+    Entity* d = new Door({"Old-door", "Door", "hall", "closed", "kitchen", "Old-key"});
+    Entity* hs = new Door({"Hall-stairs", "Door", "hall", "open", "basement", "N/A"});
+    Entity* bs = new Door({"Base-stairs", "Door", "basement", "open", "hall", "N/A"});
     
+    passert(a->name(), "Fire-axe");
+    cout << a->pickUp() << endl;
+    cout << hs->use() << endl;
+    cout << bs->observe() << endl;
+    cout << a->use(c) << endl;
+    cout << k->pickUp() << endl;
+    cout << bs->use() << endl;
+    cout << k->use(d) << endl;
+    cout << d->use() << endl;
+
     return 0; 
 }

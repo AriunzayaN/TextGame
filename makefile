@@ -14,8 +14,9 @@ entity: place.h place.cpp entity.cpp entity.h entity_test.cpp clean
 	$(CXX) $(CXXFLAGS) place.cpp entity.cpp entity_test.cpp -o entity.exe
 	./entity.exe
 
-entities: entity.cpp entity.h entities.cpp entities_test.cpp clean
-	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp entities_test.cpp -o entities.exe
+entities: entity.cpp entity.h entities.cpp entities_test.cpp manager.h manager.cpp \
+		 place.h place.cpp clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp manager.cpp place.cpp entities_test.cpp -o entities.exe
 	./entities.exe
 
 manager: manager.h manager.cpp entity.cpp entity.h entities.cpp \
