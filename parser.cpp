@@ -53,14 +53,13 @@ bool valid_input(std::vector<std::string> input){
         }
         break;
         case 2:{
-            const set<string> valid = {"use", "look","see","read", "get", "grab", "take"};
+            const set<string> valid = {"use", "look","see", "get", "grab", "take"};
             return valid.count(input[0]) > 0;
         }
         break;
         case 4:
             return (input[0] == "use" and input[2] == "on") or
-            (input[0] == "hit" and input[2] == "with") or
-            (input[0] == "shoot" and input[2] == "with");
+            (input[0] == "hit" and input[2] == "with");
         break;
         default:
             return false;
