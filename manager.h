@@ -55,9 +55,9 @@ void loadAllPlaces(std::vector<std::string> places);
 
 std::string commandWithOne(std::string);
 std::string commandWithTwo(std::string, std::string);
-std::string commandWithFour(std::string, std::string, std::string, std::string);
-
+std::string commandWithFour(std::string, std::string, std::string);
 std::string playerCommand(std::vector<std::string>);
+
 Entity* getEntity(std::string);
 Place* getPlace(std::string);
 void changeCurrentPlace(std::string);

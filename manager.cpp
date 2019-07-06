@@ -91,7 +91,7 @@ string playerCommand(vector<string> command){
         commandWithTwo(command[0], command[1]);
 
     }else if(command.size() == 4){
-        commandWithFour(command[0], command[1], command[2], command[3]);
+        commandWithFour(command[0], command[1], command[3]);
     }
     
     cout << "unknown command " << command[0] << endl;
@@ -128,7 +128,7 @@ string commandWithTwo(string command, string entity){
     }
 };
 
-string commandWithFour(string command, string entityOfTarget, string fillerCommand, string entityOfUse){
+string commandWithFour(string command, string entityOfTarget, string entityOfUse){
     if(!allPlaces["current"]->contains(entityOfTarget) &&
         !allPlaces["inventory"]->contains(entityOfTarget)){
         return "You don't have access to " + entityOfTarget;
