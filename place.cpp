@@ -21,6 +21,10 @@ string Place::add(string contentName){
     return contentName + " added to " + name;
 };
 
+bool Place::contains(string name){
+    return contentNames.count(name) > 0;
+}
+
 string Place::remove(string contentName){
     contentNames.erase(contentName);
     return contentName + " removed from " + name;

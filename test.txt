@@ -2,3 +2,6 @@ hall basement kitchen
 Fire-axe Axe hall
 Big-crate Crate basement
 Old-key Key N/A 
+Old-door Door hall closed kitchen Old-key
+Hall-stairs Door hall open basement N/A
+Base-stairs Door basement open hall N/A
