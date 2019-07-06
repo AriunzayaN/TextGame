@@ -48,7 +48,7 @@ bool valid_input(std::vector<std::string> input){
     }
     switch(input.size()){
         case 1:{
-            const set<string> valid = {"look", "see"};
+            const set<string> valid = {"look", "see", "inventory"};
             return valid.count(input[0]) > 0;
         }
         break;

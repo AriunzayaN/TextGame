@@ -1,7 +1,7 @@
 CXX			= g++
 CXXFLAGS = -std=c++14
 
-.PHONY : clean
+.PHONY : clean all
 
 clean:
 	rm -f *.exe
@@ -32,5 +32,5 @@ parser: parser.h parser.cpp clean
 all: main.cpp manager.h manager.cpp entity.cpp entity.h entities.cpp\
 		parser.h parser.cpp place.h place.cpp clean
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp parser.cpp\
-	manager.cpp main.cpp -o main.exe
+		manager.cpp main.cpp -o main.exe
 	./main.exe
