@@ -12,13 +12,17 @@ string str_tolower(string s) {
     return s;
 }
 
-vector<string> split(string str){
+vector<string> split(string str, bool lowercase){
     stringstream ss;
     ss << str;
     vector<string> entitySetup;
     string name;
     while (ss >> name){
-        entitySetup.push_back(name);
+        if(lowercase)
+            entitySetup.push_back(str_tolower(name));
+        else{
+            entitySetup.push_back(name);
+        }
     };
     return entitySetup;
 }
@@ -26,9 +30,6 @@ vector<string> split(string str){
 bool valid_chars(std::string str){
     set<char> chars = {'/', '-', ' '};
     for(auto c = 'a'; c <= 'z'; c++){
-        chars.insert(c);
-    }
-    for(auto c = 'A'; c <= 'Z'; c++){
         chars.insert(c);
     }
     for(auto c : str){
@@ -48,18 +49,17 @@ bool valid_input(std::vector<std::string> input){
     switch(input.size()){
         case 1:{
             const set<string> valid = {"look", "see"};
-            return valid.count(str_tolower(input[0])) > 0;
+            return valid.count(input[0]) > 0;
         }
         break;
         case 2:{
-            const set<string> valid = {"use", "look","see","read", "get", "grab", "take"};
-            return valid.count(str_tolower(input[0])) > 0;
+            const set<string> valid = {"use", "look","see", "get", "grab", "take"};
+            return valid.count(input[0]) > 0;
         }
         break;
         case 4:
-            return (str_tolower(input[0]) == "use" and str_tolower(input[2]) == "on") or
-            (str_tolower(input[0]) == "hit" and str_tolower(input[2]) == "with") or
-            (str_tolower(input[0]) == "shoot" and str_tolower(input[2]) == "with");
+            return (input[0] == "use" and input[2] == "on") or
+            (input[0] == "hit" and input[2] == "with");
         break;
         default:
             return false;
