@@ -15,8 +15,9 @@ void passert(T target, T reference){
 }
 
 int main(){
-    string testFileName = "test.txt";
+    string testFileName = "designs/example.txt";
     loadTheGame(testFileName);
     cout << log() << endl;
+    cout << "All manager tests passed" << endl;
     return 0;
 }

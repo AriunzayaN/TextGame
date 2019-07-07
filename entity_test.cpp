@@ -9,6 +9,6 @@ int main(){
     Entity *e = new Entity("Dolly","Entity","Hall");
     assert(e->name() == "Dolly");
     assert(e->getPlaceName() == "Hall");
-    cout << "ENTITY TEST PASS" << endl;
+    cout << "All entity tests passed" << endl;
     return 0;
 }

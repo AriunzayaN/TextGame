@@ -18,7 +18,7 @@ void loadAllPlaces(vector<string> places){
     allPlaces["current"] = allPlaces[places[0]];
 };
 
-void loadAllEntities(vector<vector<string>>& entities){
+void loadAllEntities(vector<vector<string>> entities){
     for(auto& entity: entities){
         string classname = entity[1];
         string location  = entity[2];
@@ -179,12 +179,7 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
 
 
     }else if(command == "hit"){
-        set<string> hittables = {"Axe"};
-        if(hittables.count(allEntities[entityOfUse]->getClassName()) == 1 ){
-            return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
-        }else{
-            return "You can't hit with " + entityOfUse;
-        }
+        return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
     }
 
     cout << "unknown command " << command << endl;

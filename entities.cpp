@@ -55,14 +55,11 @@ string Crate::targeted(Entity *entity){
   else if(state == "open"){
     return "Box is already open";
   }else{
-    return "Did nothin to the box";
+    return "Did nothing to the box";
   }
 }
 string Crate::observe(){
   return "Heavy looking box, wonder what's inside.";
-}
-string Crate::pickUp(){
-  return pickEntityUp(name());
 }
 
 vector<string> Crate::save(){
@@ -128,9 +125,6 @@ string Door::targeted(Entity *entity) {
 };
 string Door::observe() {
  return "It's a " + name();
-};
-string Door::pickUp() {
- return "Can't pickup";
 };
 
 vector<string> Door::save(){

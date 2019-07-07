@@ -30,6 +30,12 @@ void Entity::setPlaceName(string _placeName){
     placeName = _placeName;
 };
 
+string Entity::hit(){
+    return "Can't hit with " + entityName;
+}
+string Entity::shoot(){
+    return "Can't shoot with " + entityName;
+}
 string Entity::use(){
     return "use oopsie, shouldn't happen";
 }
@@ -43,5 +49,5 @@ string Entity::observe(){
     return "oopsie, shouldn't happen";
 }
 string Entity::pickUp(){
-    return "oopsie, shouldn't happen";
+    return "Can't pick " + entityName + " up" ;
 }

@@ -13,24 +13,29 @@ void passert(string target, string reference){
 }
 
 int main(){
-    cout << "Begin" << endl;
     loadAllPlaces({"hall", "basement", "kitchen"});
-    Entity* a = new Axe({"Fire-axe", "Axe", "hall"});
-    Entity* c = new Crate({"Big-crate", "Crate", "basement"});
-    Entity* k = new Key({"Old-key", "Key", "N/A"});
-    Entity* d = new Door({"Old-door", "Door", "hall", "closed", "kitchen", "Old-key"});
-    Entity* hs = new Door({"Hall-stairs", "Door", "hall", "open", "basement", "N/A"});
-    Entity* bs = new Door({"Base-stairs", "Door", "basement", "open", "hall", "N/A"});
-    
-    passert(a->name(), "Fire-axe");
-    cout << a->pickUp() << endl;
-    cout << hs->use() << endl;
-    cout << bs->observe() << endl;
-    cout << a->use(c) << endl;
-    cout << k->pickUp() << endl;
-    cout << bs->use() << endl;
-    cout << k->use(d) << endl;
-    cout << d->use() << endl;
 
+    loadAllEntities({ {"fire-axe", "Axe", "hall"},
+                        {"old-key", "Key", "N/A"},
+                        {"big-crate", "Crate", "basement", "closed","old-key"},
+                        {"old-door", "Door", "hall", "closed", "kitchen", "old-key"},
+                        {"hall-stairs", "Door", "basement", "open", "hall", "N/A"},
+                        {"base-stairs", "Door", "hall", "open", "basement", "N/A"} } );
+    
+    passert(getEntity("fire-axe")->name(), "fire-axe");
+    passert(getEntity("fire-axe")->pickUp(), "Added fire-axe to inventory");
+    passert(getEntity("base-stairs")->use(), "You are now in basement");
+    passert(getEntity("base-stairs")->observe(), "It's a base-stairs");
+    passert(getEntity("fire-axe")->use(getEntity("big-crate")), "Swung fire-axe Box broke open and you see items inside. Items: [old-key] ");
+    passert(getEntity("old-key")->pickUp(), "Added old-key to inventory");
+    passert(getEntity("hall-stairs")->use(), "You are now in hall");
+    passert(getEntity("old-door")->pickUp(), "Can't pick old-door up");
+    passert(getEntity("old-door")->shoot(), "Can't shoot with old-door");
+    passert(getEntity("old-door")->hit(), "Can't hit with old-door");
+    passert(getEntity("old-key")->use(getEntity("old-door")), "Key used. old-key used and old-door opened");
+    passert(getEntity("old-door")->use(), "You are now in kitchen");
+
+
+    cout << "All entities tests passed" << endl;
     return 0; 
 }
