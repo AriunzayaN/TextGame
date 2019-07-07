@@ -10,10 +10,11 @@ string Place::getName(){
     return name;
 }
 string Place::observe(){
-    string s;
+    string s = name + ": ";
     for (auto& name: contentNames){
         s += "[" + name + "] ";
     }
+    s+= "\n";
     return s;
 };
 string Place::add(string contentName){

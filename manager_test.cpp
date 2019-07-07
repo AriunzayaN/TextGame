@@ -20,6 +20,7 @@ int main(){
     pickEntityUp("fire-axe");
     cout << saveTheGame() << endl;
 
+    cout << log() << endl;
     cout << "All manager tests passed" << endl;
     return 0;
 }
