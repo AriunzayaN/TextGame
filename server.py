@@ -24,7 +24,7 @@ def executeCpp(filename, command):
 def root():
     return template('''
         <form action="/hello" method="post">
-            Nickname: <input type="text" name="name"><br>
+            Enter game name: <input type="text" name="name"><br>
                     <input type="hidden" name="command" value="">
             <input type="submit" value="Submit">
         </form>
@@ -37,10 +37,8 @@ def index():
     postdata = request.body.read()
     name = request.forms.get("name")
     command = request.forms.get("command")
-    print(name, command)
-    query = 'SELECT EXISTS(SELECT 1 FROM users WHERE username="{}");'.format(
+    query = 'SELECT EXISTS(SELECT 1 FROM users WHERE gamename="{}");'.format(
                 name)
-    print(query)
     c.execute(query)
     exists = c.fetchone()[0]
     message = 'Game continuing...'
@@ -49,11 +47,11 @@ def index():
         with open('designs/example.txt', 'r') as content_file:
             state = content_file.read()
             print(state)
-            c.execute('INSERT INTO users (username, state) VALUES("{}","{}");'
+            c.execute('INSERT INTO users (gamename, state) VALUES("{}","{}");'
                       .format(name, state))
-    state = c.execute('SELECT state FROM users WHERE username="{}"'
+    state = c.execute('SELECT state FROM users WHERE gamename="{}"'
                       .format(name)).fetchone()[0]
-    tempfilename = name + ".temp.text"
+    tempfilename = 'var/' + name + ".temp.text"
     if os.path.exists(tempfilename):
         os.remove(tempfilename)
     with open(tempfilename, 'w') as temp_file:
@@ -63,10 +61,11 @@ def index():
         gameOutput = executeCpp(tempfilename, command)
     with open(tempfilename, 'r') as temp_file:
         state = temp_file.read()
-        c.execute('UPDATE users SET state="{}" WHERE username="{}"'
+        c.execute('UPDATE users SET state="{}" WHERE gamename="{}"'
                   .format(state, name))
     if os.path.exists(tempfilename):
         os.remove(tempfilename)
+    conn.commit()
     return template('''
         <b>{{name}} {{message}}</b><br>
         <p>{{gameOutput}}</p><br>
