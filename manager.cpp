@@ -149,7 +149,8 @@ string commandWithTwo(string command, string entity){
             return entity + " not present";
         }
 
-    }else if(command == "look" || command == "see"){
+    }
+    else if(command == "look" || command == "see"){
         if(entity == "inventory"){
             return allPlaces["inventory"]->observe();
         }else if(allPlaces["current"]->contains(entity) ||
@@ -176,7 +177,6 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
 
 
     }else if(command == "use"){
-        pickEntityUp(entityOfUse);
         return allEntities[entityOfTarget]->use(allEntities[entityOfUse]);
 
 

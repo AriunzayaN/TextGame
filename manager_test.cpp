@@ -17,7 +17,8 @@ void passert(T target, T reference){
 int main(){
     string testFileName = "designs/example.txt";
     loadTheGame(testFileName);
-    pickEntityUp("fire-axe");
+    cout <<  getEntity("fire-axe")->pickUp() << endl;
+
     cout << saveTheGame() << endl;
 
     cout << log() << endl;
