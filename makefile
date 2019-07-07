@@ -34,3 +34,8 @@ all: main.cpp manager.h manager.cpp entity.cpp entity.h entities.cpp\
 	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp parser.cpp\
 		manager.cpp main.cpp -o main.exe
 	./main.exe
+
+server: server.cpp manager.h manager.cpp entity.cpp entity.h entities.cpp\
+		parser.h parser.cpp place.h place.cpp clean
+	$(CXX) $(CXXFLAGS) entity.cpp entities.cpp place.cpp parser.cpp\
+		manager.cpp server.cpp -o server.exe
