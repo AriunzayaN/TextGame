@@ -29,6 +29,9 @@ int main(){
     passert(getEntity("fire-axe")->use(getEntity("big-crate")), "Swung fire-axe Box broke open and you see items inside. Items: [old-key] ");
     passert(getEntity("old-key")->pickUp(), "Added old-key to inventory");
     passert(getEntity("hall-stairs")->use(), "You are now in hall");
+    passert(getEntity("old-door")->pickUp(), "Can't pick old-door up");
+    passert(getEntity("old-door")->shoot(), "Can't shoot with old-door");
+    passert(getEntity("old-door")->hit(), "Can't hit with old-door");
     passert(getEntity("old-key")->use(getEntity("old-door")), "Key used. old-key used and old-door opened");
     passert(getEntity("old-door")->use(), "You are now in kitchen");
 

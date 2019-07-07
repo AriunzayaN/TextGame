@@ -155,12 +155,7 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
 
 
     }else if(command == "hit"){
-        set<string> hittables = {"Axe"};
-        if(hittables.count(allEntities[entityOfUse]->getClassName()) == 1 ){
-            return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
-        }else{
-            return "You can't hit with " + entityOfUse;
-        }
+        return allEntities[entityOfUse]->use(allEntities[entityOfTarget]);
     }
 
     cout << "unknown command " << command << endl;
