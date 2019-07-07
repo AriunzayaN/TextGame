@@ -17,10 +17,11 @@ void passert(T target, T reference){
 int main(){
     string testFileName = "designs/example.txt";
     loadTheGame(testFileName);
-    pickEntityUp("fire-axe");
-    cout << saveTheGame() << endl;
+    cout <<  getEntity("fire-axe")->use() << endl;
 
-    cout << log() << endl;
+    // cout << saveTheGame() << endl;
+
+    // cout << log() << endl;
     cout << "All manager tests passed" << endl;
     return 0;
 }
