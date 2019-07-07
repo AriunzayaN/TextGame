@@ -13,6 +13,8 @@ public:
   std::string getPlaceName();
   std::string getClassName();
   void setPlaceName(std::string);
+  virtual std::string shoot();
+  virtual std::string hit();
   virtual std::string observe();
   virtual std::string pickUp();
   virtual std::string targeted(Entity *entity);

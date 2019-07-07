@@ -26,7 +26,6 @@ public:
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
   std::string observe() override;
-  std::string pickUp() override;
 };
 
 class Key: public Entity{
@@ -49,11 +48,11 @@ public:
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
   std::string observe() override;
-  std::string pickUp() override;
 };
 
 void loadTheGame(std::string);
 void loadAllPlaces(std::vector<std::string> places);
+void loadAllEntities(std::vector<std::vector<std::string>>);
 
 std::string commandWithOne(std::string);
 std::string commandWithTwo(std::string, std::string);
