@@ -17,6 +17,7 @@ void passert(T target, T reference){
 int main(){
     string testFileName = "designs/example.txt";
     loadTheGame(testFileName);
+    getPlace("inventory")->add("gun");
     cout << log() << endl;
     cout << "All manager tests passed" << endl;
     return 0;

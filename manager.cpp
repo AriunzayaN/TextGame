@@ -151,6 +151,7 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
 
 
     }else if(command == "use"){
+        pickEntityUp(entityOfUse);
         return allEntities[entityOfTarget]->use(allEntities[entityOfUse]);
 
 
@@ -175,6 +176,8 @@ string log(){
     s += "\ncurrent place: " + allPlaces["current"]->getName();
     s += "\ncontents of current place: " + allPlaces["current"]->observe();
     s += "\ncontents of basement place: " + allPlaces["basement"]->observe();
+    s += "\ncontents of inventory: " + allPlaces["inventory"]->observe();
+
 
     return s;
 };
