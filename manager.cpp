@@ -149,6 +149,11 @@ string commandWithTwo(string command, string entity){
             return entity + " not present";
         }
 
+<<<<<<< Updated upstream
+=======
+    }else if(command == "look" && entity == "around"){
+
+>>>>>>> Stashed changes
     }
     else if(command == "look" || command == "see"){
         if(entity == "inventory"){
