@@ -27,6 +27,7 @@ public:
   std::string targeted(Entity *entity) override;
   std::string observe() override;
   std::string pickUp() override;
+  std::vector<std::string> save() override;
 };
 
 class Key: public Entity{
@@ -40,8 +41,8 @@ public:
 };
 
 class Door: public Entity{
-  std::string targetPlace;
   std::string state;
+  std::string targetPlace;
   std::string keyName;
 public:
   Door(std::vector<std::string> setup);
@@ -50,9 +51,11 @@ public:
   std::string targeted(Entity *entity) override;
   std::string observe() override;
   std::string pickUp() override;
+  std::vector<std::string> save() override;
 };
 
 void loadTheGame(std::string);
+std::string saveTheGame();
 void loadAllPlaces(std::vector<std::string> places);
 
 std::string commandWithOne(std::string);

@@ -65,6 +65,13 @@ string Crate::pickUp(){
   return pickEntityUp(name());
 }
 
+vector<string> Crate::save(){
+  auto v = baseSave();
+  v.push_back(state);
+  v.insert( v.end(), contents.begin(), contents.end());
+  return v;
+};
+
 /*
   Key
 */
@@ -124,4 +131,12 @@ string Door::observe() {
 };
 string Door::pickUp() {
  return "Can't pickup";
+};
+
+vector<string> Door::save(){
+  auto v = baseSave();
+  v.push_back(state);
+  v.push_back(targetPlace);
+  v.push_back(keyName);
+  return v;
 };

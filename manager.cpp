@@ -56,6 +56,30 @@ void loadTheGame(string fileName){
     cout << "Game loaded " <<  endl;
 };
 
+string flatten(vector<string> v){
+    string res;
+    for(auto i: v){
+        res += i + " ";
+    }
+    res.back() = '\n';
+    return res;
+};
+
+string saveTheGame(){
+    vector<string> places = {getPlace("current")->getName()};
+    for(auto place : allPlaces){
+        set<string> exclude = {places[0],"inventory","current"};
+        if (exclude.count(place.first) == 0){
+            places.push_back(place.first);
+        }
+    }
+    string res = flatten(places);
+    for(auto entity: allEntities){
+        res += flatten(entity.second->save());
+    }
+    return res;
+}
+
 Entity* getEntity(std::string entityName){
     if(allEntities.find(entityName) == allEntities.end()){
         cout << "Unknown entity name " << entityName << endl;

@@ -12,10 +12,12 @@ public:
   std::string name();
   std::string getPlaceName();
   std::string getClassName();
+  std::vector<std::string> baseSave();
   void setPlaceName(std::string);
   virtual std::string observe();
   virtual std::string pickUp();
   virtual std::string targeted(Entity *entity);
   virtual std::string use();
   virtual std::string use(Entity *entity);
+  virtual std::vector<std::string> save();
 };
