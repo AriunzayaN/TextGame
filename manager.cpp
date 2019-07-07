@@ -53,7 +53,6 @@ void loadTheGame(string fileName){
         entitiesSetup.push_back(split(token, false));
     }
     loadAllEntities(entitiesSetup);
-    cout << "Game loaded " <<  endl;
 };
 
 string flatten(vector<string> v){
