@@ -176,7 +176,6 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
 
 
     }else if(command == "use"){
-        pickEntityUp(entityOfUse);
         return allEntities[entityOfTarget]->use(allEntities[entityOfUse]);
 
 
