@@ -24,6 +24,7 @@ void loadAllPlaces(vector<string> places){
     allPlaces["current"] = allPlaces[places[0]];
 };
 
+
 void loadAllEntities(vector<vector<string>> entities){
     for(auto& entity: entities){
         string classname = entity[1];
