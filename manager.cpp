@@ -8,6 +8,12 @@ using namespace std;
 
 static map<string, Entity*> allEntities;
 static map<string, Place*> allPlaces;
+static const string helpMsg ="\
+commands:   use; use []; use [] on []\n\
+            look; look around; look []; see []\n\
+            get []; grab []; take [];\n\
+            enter [] \n\
+            hit [] with []\n";
 
 void loadAllPlaces(vector<string> places){
     for (auto& place: places){
@@ -122,7 +128,10 @@ string playerCommand(vector<string> command){
 };
 
 string commandWithOne(string command){
-    if(command == "look" || command == "see"){
+    if(command == "help" || command == "h"){
+        return helpMsg;
+
+    }else if(command == "look" || command == "see"){
         return allPlaces["current"]->observe();
     }else if (command == "inventory" || command == "i"){
         return allPlaces["inventory"]->observe();
