@@ -141,6 +141,13 @@ string commandWithTwo(string command, string entity){
              }else{
                  return entity + " not present";
              }
+    }if(command == "enter"){
+            if(allPlaces["current"]->contains(entity) ||
+             allPlaces["inventory"]->contains(entity)){
+                 return allEntities[entity]->enter();
+             }else{
+                 return entity + " not present";
+             }
     }else if(command == "get" || command == "grab" ||
                 command == "take"){
         if(allPlaces["current"]->contains(entity) ){

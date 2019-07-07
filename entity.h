@@ -18,6 +18,7 @@ public:
   virtual std::string hit();
   virtual std::string observe();
   virtual std::string pickUp();
+  virtual std::string enter();
   virtual std::string targeted(Entity *entity);
   virtual std::string use();
   virtual std::string use(Entity *entity);
