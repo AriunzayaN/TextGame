@@ -18,6 +18,14 @@ string Entity::getClassName(){
     return className;
 }
 
+vector<string> Entity::baseSave(){
+    return {entityName, className, placeName};
+};
+
+vector<string> Entity::save(){
+    return baseSave();
+};
+
 void Entity::setPlaceName(string _placeName){
     placeName = _placeName;
 };

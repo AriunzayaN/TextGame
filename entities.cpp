@@ -62,6 +62,13 @@ string Crate::observe(){
   return "Heavy looking box, wonder what's inside.";
 }
 
+vector<string> Crate::save(){
+  auto v = baseSave();
+  v.push_back(state);
+  v.insert( v.end(), contents.begin(), contents.end());
+  return v;
+};
+
 /*
   Key
 */
@@ -118,4 +125,12 @@ string Door::targeted(Entity *entity) {
 };
 string Door::observe() {
  return "It's a " + name();
+};
+
+vector<string> Door::save(){
+  auto v = baseSave();
+  v.push_back(state);
+  v.push_back(targetPlace);
+  v.push_back(keyName);
+  return v;
 };
