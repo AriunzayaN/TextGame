@@ -149,8 +149,6 @@ string commandWithTwo(string command, string entity){
             return entity + " not present";
         }
 
-    }else if(command == "look" && entity == "around"){
-
     }
     else if(command == "look" || command == "see"){
         if(entity == "inventory"){
