@@ -134,3 +134,7 @@ vector<string> Door::save(){
   v.push_back(keyName);
   return v;
 };
+
+string Door::enter(){
+  return use();
+}

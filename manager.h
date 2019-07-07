@@ -50,6 +50,7 @@ public:
   std::string targeted(Entity *entity) override;
   std::string observe() override;
   std::vector<std::string> save() override;
+  std::string enter() override;
 };
 void loadTheGame(std::string);
 std::string saveTheGame();

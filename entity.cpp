@@ -30,6 +30,9 @@ void Entity::setPlaceName(string _placeName){
     placeName = _placeName;
 };
 
+string Entity::enter(){
+    return "Can't enter " + entityName;
+}
 string Entity::hit(){
     return "Can't hit with " + entityName;
 }

@@ -122,11 +122,11 @@ string playerCommand(vector<string> command){
 };
 
 string commandWithOne(string command){
-    if(command == "look" || command == "see")
+    if(command == "look" || command == "see"){
         return allPlaces["current"]->observe();
-    else if (command == "inventory")
+    }else if (command == "inventory" || command == "i"){
         return allPlaces["inventory"]->observe();
-    
+    }
     cout << "unknown command " << command << endl;
     exit(1);
     
@@ -137,6 +137,12 @@ string commandWithTwo(string command, string entity){
             if(allPlaces["current"]->contains(entity) ||
              allPlaces["inventory"]->contains(entity)){
                  return allEntities[entity]->use();
+             }else{
+                 return entity + " not present";
+             }
+    }if(command == "enter"){
+            if(allPlaces["current"]->contains(entity)){
+                 return allEntities[entity]->enter();
              }else{
                  return entity + " not present";
              }
