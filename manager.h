@@ -18,6 +18,8 @@ public:
 };
 
 class Crate: public Entity{
+  std::vector<std::string> contents;
+  std::string state;
 public:
   Crate(std::vector<std::string> setup);
   std::string use() override;

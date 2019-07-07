@@ -29,7 +29,10 @@ string Axe::pickUp(){
   Crate
 */
 Crate::Crate(vector<string> setup):Entity(setup[0], setup[1], setup[2]){
-  ;
+  state = setup[3];
+  for(auto it = setup.begin() + 4; it != setup.end(); it++){
+    contents.push_back(*it);
+  }
 }
 string Crate::use(){
   return "It's heavy, not sure how to use it.";
@@ -38,11 +41,21 @@ string Crate::use(Entity *entity){
   return "It's heavy, not sure how to use it.";
 }
 string Crate::targeted(Entity *entity){
-  if(entity->getClassName() == "Axe"){
-    return "Box broke open and you see gold inside.";
+  if(entity->getClassName() == "Axe" && state == "closed"){
+    string s = " Items: ";
+    state == "open";
+    for(auto item:contents){
+      s += "[" + item + "] ";
+      getEntity(item)->setPlaceName(getPlaceName());
+      getPlace("N/A")->remove(item);
+      getPlace(getPlaceName())->add(item);
+    }
+    return "Box broke open and you see items inside." + s ;
   }
-  else{
-    return "Did nothing to the box.";
+  else if(state == "open"){
+    return "Box is already open";
+  }else{
+    return "Did nothin to the box";
   }
 }
 string Crate::observe(){
@@ -65,7 +78,7 @@ string Key::use(Entity *entity) {
   return "Key used. " + entity->targeted(this);
 }
 string Key::targeted(Entity *entity) {
-  return "Can't be used like that.";
+  return "Can't use a key like that";
 }
 
 string Key::observe() {

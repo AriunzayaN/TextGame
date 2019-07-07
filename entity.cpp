@@ -18,6 +18,10 @@ string Entity::getClassName(){
     return className;
 }
 
+void Entity::setPlaceName(string _placeName){
+    placeName = _placeName;
+};
+
 string Entity::use(){
     return "use oopsie, shouldn't happen";
 }
