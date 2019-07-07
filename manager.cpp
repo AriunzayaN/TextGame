@@ -123,11 +123,11 @@ string playerCommand(vector<string> command){
 };
 
 string commandWithOne(string command){
-    if(command == "look" || command == "see")
+    if(command == "look" || command == "see"){
         return allPlaces["current"]->observe();
-    else if (command == "inventory")
+    }else if (command == "inventory" || command == "i"){
         return allPlaces["inventory"]->observe();
-    
+    }
     cout << "unknown command " << command << endl;
     exit(1);
     
