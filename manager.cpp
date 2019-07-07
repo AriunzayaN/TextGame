@@ -68,7 +68,7 @@ string flatten(vector<string> v){
 string saveTheGame(){
     vector<string> places = {getPlace("current")->getName()};
     for(auto place : allPlaces){
-        set<string> exclude = {places[0],"inventory","current"};
+        set<string> exclude = {places[0],"inventory","current","N/A"};
         if (exclude.count(place.first) == 0){
             places.push_back(place.first);
         }
@@ -102,6 +102,7 @@ void changeCurrentPlace(string place){
 string pickEntityUp(string entity){
     allPlaces["inventory"]->add(entity);
     allPlaces["current"]->remove(entity);
+    allEntities[entity]->setPlaceName("inventory");
     return "Added " + entity + " to inventory";
 };
 

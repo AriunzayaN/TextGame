@@ -26,7 +26,6 @@ public:
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
   std::string observe() override;
-  std::string pickUp() override;
   std::vector<std::string> save() override;
 };
 
@@ -52,6 +51,7 @@ public:
   std::string observe() override;
   std::vector<std::string> save() override;
 };
+void loadTheGame(std::string);
 std::string saveTheGame();
 void loadAllPlaces(std::vector<std::string> places);
 void loadAllEntities(std::vector<std::vector<std::string>>);
