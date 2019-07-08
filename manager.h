@@ -35,10 +35,12 @@ public:
 
 class Button: public Entity{
   std::string target;
+  std::string targetState;
 public:
   Button(std::vector<std::string> setup);
   std::string use() override;
   std::string targeted(Entity *entity) override;
+  std::vector<std::string> save() override;
 };
 
 class Readable: public Entity{

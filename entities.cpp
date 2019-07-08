@@ -46,12 +46,12 @@ string Crate::targeted(Entity *entity){
       getPlace("N/A")->remove(item);
       getPlace(getPlaceName())->add(item);
     }
-    return "Box broke open and you see items inside." + s ;
+    return name() + " broke open and you see items inside." + s ;
   }
   else if(getState() == "open"){
-    return "Box is already open";
+    return name() + " is already open";
   }else{
-    return "Did nothing to the box";
+    return "Did nothing to " + name();
   }
 }
 
@@ -86,14 +86,15 @@ string Key::pickUp(){
 */
 Button::Button(vector<string> setup):Entity(setup[0], setup[1], setup[2], "default"){
   target = setup[4];
+  targetState = setup[5];
 }
 string Button::use() {
   if(getEntity(target)){
-    getEntity(target)->setState("open");
-    return target + " is now open";
+    getEntity(target)->setState(targetState);
+    return target + " is now " + targetState;
   }
   else if(getPlace(target)){
-    getPlace(target)->setState("open");
+    getPlace(target)->setState(targetState);
     return "You can now enter "+ target;
   }else{
     return "Pushed button " + name();
@@ -102,6 +103,12 @@ string Button::use() {
 string Button::targeted(Entity *entity) {
   return "Can't use a button like that";
 }
+vector<string> Button::save(){
+  auto v = baseSave();
+  v.push_back(target);
+  v.push_back(targetState);
+  return v;
+};
 
 /*
   Readable
