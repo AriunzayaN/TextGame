@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include "manager.h"
 #include "parser.h"
 
@@ -8,25 +7,20 @@ using namespace std;
 
 static map<string, Entity*> allEntities;
 static map<string, Place*> allPlaces;
-static const string helpMsg ="\
-commands:   use; use []; use [] on []\n\
-            look; look around; look []; see []\n\
-            get []; grab []; take [];\n\
-            enter [] \n\
-            hit [] with []\n";
 
-void loadAllPlaces(vector<string> places){
-    for (auto& place: places){
-        allPlaces[place] = new Place(place);
+void loadAllPlaces(vector<string>& placeLines){
+    for (auto& place: placeLines){
+        auto v = split(place);
+        allPlaces[v[0]] = new Place(v[0], v[1]);
     }
-    allPlaces["inventory"] = new Place("inventory");
-    allPlaces["N/A"] = new Place("N/A");
-    allPlaces["current"] = allPlaces[places[0]];
+    allPlaces["inventory"] = new Place({"inventory","default"});
+    allPlaces["N/A"] = new Place({"N/A","default"});
+    changeCurrentPlace(split(placeLines[0]).front());
 };
 
-
-void loadAllEntities(vector<vector<string>> entities){
-    for(auto& entity: entities){
+void loadAllEntities(vector<string>& entityLines){
+    for(auto& line: entityLines){
+        auto entity = split(line);
         string classname = entity[1];
         string location  = entity[2];
         if(classname == "Axe"){
@@ -45,30 +39,16 @@ void loadAllEntities(vector<vector<string>> entities){
             cout << "Unknown entity class name " + classname << endl;
             exit(1);
         }
-        getPlace(location)->add(entity[0]);
+        getPlace(location)->add(entity.front());
     }
 };
 
 void loadTheGame(string fileName){
-    ifstream stateFile(fileName);
-    string token;
-    getline(stateFile, token);
-    loadAllPlaces(split(token, false));
-    
-    vector<vector<string>> entitiesSetup;
-    while(getline(stateFile, token)){
-        entitiesSetup.push_back(split(token, false));
-    }
-    loadAllEntities(entitiesSetup);
-};
-
-string flatten(vector<string> v){
-    string res;
-    for(auto i: v){
-        res += i + " ";
-    }
-    res.back() = '\n';
-    return res;
+    vector<string> placeLines, entityLines, messageLines;
+    read_sections(fileName, placeLines, entityLines, messageLines);
+    loadAllPlaces(placeLines);
+    loadAllEntities(entityLines);
+    loadAllMessages(messageLines);
 };
 
 string saveTheGame(){
@@ -76,14 +56,16 @@ string saveTheGame(){
     for(auto place : allPlaces){
         set<string> exclude = {places[0],"inventory","current","N/A"};
         if (exclude.count(place.first) == 0){
-            places.push_back(place.first);
+            places.push_back(place.second->save());
         }
     }
-    string res = flatten(places);
+    string res = flatten_lines(places);
+    res += "#enitities\n";
     for(auto entity: allEntities){
-        res += flatten(entity.second->save());
+        auto entitySave = (entity.second)->save();
+        res += flatten(entitySave);
     }
-    return res;
+    return res +"#messages\n" + saveAllMessages();
 }
 
 Entity* getEntity(std::string entityName){
@@ -130,8 +112,7 @@ string playerCommand(vector<string> command){
 
 string commandWithOne(string command){
     if(command == "help" || command == "h"){
-        return helpMsg;
-
+        return getMessage("help","help");
     }else if(command == "look" || command == "see"){
         return allPlaces["current"]->observe();
     }else if (command == "inventory" || command == "i"){
@@ -205,7 +186,6 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
     exit(1);
 };
 
-
 string log(){
     string s = "places: ";
     for(auto& place: allPlaces){
@@ -219,7 +199,6 @@ string log(){
     s += "\ncontents of current place: " + allPlaces["current"]->observe();
     s += "\ncontents of basement place: " + allPlaces["basement"]->observe();
     s += "\ncontents of inventory: " + allPlaces["inventory"]->observe();
-
 
     return s;
 };

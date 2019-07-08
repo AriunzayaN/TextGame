@@ -2,9 +2,8 @@
 #include "entity.h"
 using namespace std;
 
-Entity::Entity(string _entityName, string _className, string _placeName)
-    :entityName(_entityName), className(_className), placeName(_placeName){}
-
+Entity::Entity(string _entityName, string _className, string _placeName, string _state)
+    :entityName(_entityName), className(_className), placeName(_placeName), state(_state){}
 
 string Entity::name(){
     return entityName;
@@ -19,7 +18,7 @@ string Entity::getClassName(){
 }
 
 vector<string> Entity::baseSave(){
-    return {entityName, className, placeName};
+    return {entityName, className, placeName, state};
 };
 
 vector<string> Entity::save(){
@@ -49,7 +48,7 @@ string Entity::targeted(Entity *entity){
     return "oopsie, shouldn't happen";
 }
 string Entity::observe(){
-    return "oopsie, shouldn't happen";
+    return getMessage(entityName,state);
 }
 string Entity::pickUp(){
     return "Can't pick " + entityName + " up" ;

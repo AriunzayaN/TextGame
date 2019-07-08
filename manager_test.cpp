@@ -18,7 +18,6 @@ int main(){
     string testFileName = "designs/example.txt";
     loadTheGame(testFileName);
     cout <<  getEntity("fire-axe")->pickUp() << endl;
-
     cout << saveTheGame() << endl;
 
     cout << log() << endl;

@@ -1,8 +1,6 @@
 #pragma once
 
-#include "place.h"
 #include "entity.h"
-#include "parser.h"
 #include <map>
 #include <vector>
 #include <string>
@@ -13,7 +11,6 @@ public:
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
-  std::string observe() override;
   std::string pickUp() override;
 };
 
@@ -25,7 +22,6 @@ public:
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
-  std::string observe() override;
   std::vector<std::string> save() override;
 };
 
@@ -35,7 +31,6 @@ public:
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
-  std::string observe() override;
   std::string pickUp() override;
 };
 
@@ -48,14 +43,15 @@ public:
   std::string use() override;
   std::string use(Entity *entity) override;
   std::string targeted(Entity *entity) override;
-  std::string observe() override;
   std::vector<std::string> save() override;
   std::string enter() override;
 };
+
+
 void loadTheGame(std::string);
 std::string saveTheGame();
-void loadAllPlaces(std::vector<std::string> places);
-void loadAllEntities(std::vector<std::vector<std::string>>);
+void loadAllPlaces(std::vector<std::string>&);
+void loadAllEntities(std::vector<std::string>&);
 
 std::string commandWithOne(std::string);
 std::string commandWithTwo(std::string, std::string);

@@ -9,7 +9,7 @@ int main(){
     loadTheGame(testFileName);
     
     for (string line; getline(cin, line);){
-        vector<string> v = split(line, true);
+        vector<string> v = split(line);
 
         if(valid_input(v)){
             cout << playerCommand(v) << endl;
