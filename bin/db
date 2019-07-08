@@ -32,7 +32,7 @@ case $1 in
 
    "dump")
     set -x
-    sqlite3 var/server.sqlite3 "SELECT * FROM users;"
+    sqlite3 var/server.sqlite3 "SELECT * FROM games;"
     ;;
   *)
     usage
