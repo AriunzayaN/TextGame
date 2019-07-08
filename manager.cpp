@@ -60,7 +60,7 @@ void loadTheGame(string fileName){
 string saveTheGame(){
     vector<string> places = {getPlace("current")->save()};
     for(auto place : allPlaces){
-        set<string> exclude = {places[0],"inventory","current","N/A"};
+        set<string> exclude = {getPlace("current")->getName(),"inventory","current","N/A"};
         if (exclude.count(place.first) == 0){
             places.push_back(place.second->save());
         }
