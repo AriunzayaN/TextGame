@@ -15,8 +15,10 @@ public:
   std::string name();
   std::string getPlaceName();
   std::string getClassName();
+  std::string getState();
   std::vector<std::string> baseSave();
   void setPlaceName(std::string);
+  void setState(std::string);
   virtual std::string shoot();
   virtual std::string hit();
   virtual std::string observe();

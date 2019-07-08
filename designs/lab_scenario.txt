@@ -1,0 +1,34 @@
+hall default
+lab forbidden
+lobby default
+batroom default
+winroom default
+#items
+leaflet Readable hall
+hallw Door hall closed winroom red-button
+halle Door hall open batroom N/A
+halls Door hall open lobby N/A
+bat Axe batroom
+batw Door batroom open hall N/A
+button-glass Crate lobby closed blue-button
+lobbyn Door lobby open hall N/A
+blue-button Button N/A default lab
+lobbye Door lobby open lab N/A
+red-button Button lab default hallw
+labw Door lab open lobby N/A
+#messages
+leaflet default Hello welcome to the lab. In case of emergency push the button in lab.
+hallw default Hm seem to be locked
+halle default The door is open.
+halls default The door is open.
+bat default A blunt weapon good for smashing things.
+batw default The door is open.
+button-glass closed There is a button in there. I better find something to break it. I can't use my bare hands.
+button-glass open I can press the blue button now.
+lobbyn default The door is open.
+blue-button default It says lab door button on the side. 
+lobbye closed The door is locked. 
+lobbye open The door is open. 
+lab forbidden I shouldn't go in there.
+red-button default This should open the main entrance door.
+labw default The door is open.
