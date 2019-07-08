@@ -1,30 +1,38 @@
 #include <sstream>
 #include <set>
-#include <cctype>
-#include <algorithm>
+#include <fstream>
+#include <iostream>
 #include "parser.h"
 
 using namespace std;
 
-string str_tolower(string s) {
-    transform(s.begin(), s.end(), s.begin(), 
-        [](unsigned char c){ return tolower(c); });
-    return s;
-}
 
-vector<string> split(string str, bool lowercase){
+vector<string> split(string str){
     stringstream ss;
     ss << str;
-    vector<string> entitySetup;
+    vector<string> v;
     string name;
     while (ss >> name){
-        if(lowercase)
-            entitySetup.push_back(str_tolower(name));
-        else{
-            entitySetup.push_back(name);
-        }
+        v.push_back(name);
     };
-    return entitySetup;
+    return v;
+}
+
+string flatten(vector<string> v){
+    string res;
+    for(auto i: v){
+        res += i + " ";
+    }
+    res.back() = '\n';
+    return res;
+};
+
+string flatten_lines(vector<string> v){
+    string res;
+    for(auto i: v){
+        res += i + "\n";
+    }
+    return res;
 }
 
 bool valid_chars(std::string str){
@@ -65,4 +73,18 @@ bool valid_input(std::vector<std::string> input){
             return false;
         break;
     }
+}
+
+void read_sections(std::string fileName, vector<string>& places, vector<string>& entities, vector<string>& messages){
+    ifstream stateFile(fileName);
+    for(string token; getline(stateFile, token) && token[0] != '#';){
+        places.push_back(token);
+    }
+    for(string token; getline(stateFile, token) && token[0] != '#';){
+        entities.push_back(token);
+    }
+    for(string token; getline(stateFile, token);){
+        messages.push_back(token);
+    }
+    stateFile.close();
 }

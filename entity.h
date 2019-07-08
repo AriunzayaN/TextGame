@@ -1,14 +1,17 @@
 #pragma once
 #include <string>
 #include <vector>
+
+#include "place.h"
 // Skeleton for all Entity items.
 
 class Entity{
   const std::string entityName;
   const std::string className;
   std::string placeName;
+  std::string state;
 public:
-  Entity(std::string, std::string, std::string);
+  Entity(std::string, std::string, std::string, std::string);
   std::string name();
   std::string getPlaceName();
   std::string getClassName();
