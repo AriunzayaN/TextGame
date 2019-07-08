@@ -11,6 +11,8 @@ public:
     Place(std::string, std::string);
     std::string getName();
     std::string observe();
+    std::string getState();
+    void setState(std::string);
     bool contains(std::string);
     std::string add(std::string);
     std::string remove(std::string);

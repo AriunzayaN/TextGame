@@ -17,6 +17,14 @@ string Entity::getClassName(){
     return className;
 }
 
+string Entity::getState(){
+    return state;
+}
+
+void Entity::setState(string _state){
+        state = _state;
+}
+
 vector<string> Entity::baseSave(){
     return {entityName, className, placeName, state};
 };
@@ -39,10 +47,10 @@ string Entity::shoot(){
     return "Can't shoot with " + entityName;
 }
 string Entity::use(){
-    return "use oopsie, shouldn't happen";
+    return "Can't use " + entityName;
 }
 string Entity::use(Entity *entity){
-    return "oopsie, shouldn't happen";
+    return "Can't use " + entityName;
 }
 string Entity::targeted(Entity *entity){
     return "oopsie, shouldn't happen";

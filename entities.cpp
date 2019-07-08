@@ -37,9 +37,9 @@ string Crate::use(Entity *entity){
   return "It's heavy, not sure how to use it.";
 }
 string Crate::targeted(Entity *entity){
-  if(entity->getClassName() == "Axe" && state == "closed"){
+  if(entity->getClassName() == "Axe" && getState() == "closed"){
     string s = " Items: ";
-    state == "open";
+    setState("open");
     for(auto item:contents){
       s += "[" + item + "] ";
       getEntity(item)->setPlaceName(getPlaceName());
@@ -48,7 +48,7 @@ string Crate::targeted(Entity *entity){
     }
     return "Box broke open and you see items inside." + s ;
   }
-  else if(state == "open"){
+  else if(getState() == "open"){
     return "Box is already open";
   }else{
     return "Did nothing to the box";
@@ -81,6 +81,37 @@ string Key::pickUp(){
   return pickEntityUp(name());
 }
 
+/*
+  Button
+*/
+Button::Button(vector<string> setup):Entity(setup[0], setup[1], setup[2], "default"){
+  target = setup[4];
+}
+string Button::use() {
+  if(getEntity(target)){
+    getEntity(target)->setState("open");
+    return target + " is now open";
+  }
+  else if(getPlace(target)){
+    getPlace(target)->setState("open");
+    return "You can now enter "+ target;
+  }else{
+    return "Pushed button " + name();
+  }
+}
+string Button::targeted(Entity *entity) {
+  return "Can't use a button like that";
+}
+
+/*
+  Readable
+*/
+Readable::Readable(vector<string> setup):Entity(setup[0], setup[1], setup[2], "default"){
+  ;
+}
+string Readable::targeted(Entity *entity) {
+  return "Can't use " + name() + " like that";
+}
 
 /*
   Door
@@ -90,8 +121,10 @@ Door::Door(vector<string> setup):Entity(setup[0], setup[1], setup[2], setup[3]){
   keyName = setup[5];
 }
 string Door::use() {
-  if(state == "closed"){
+  if(getState() == "closed"){
     return "Seem to be locked";
+  }else if(getPlace(targetPlace)->getState() == "forbidden"){
+    return getMessage(targetPlace, getPlace(targetPlace)->getState());
   }else{
     changeCurrentPlace(targetPlace);
     return "You are now in " + targetPlace;
@@ -101,10 +134,10 @@ string Door::use(Entity *entity) {
   return "You can't pick up " + name();
 };
 string Door::targeted(Entity *entity) {
-  if(state == "closed" && keyName == entity->name()){
-    state = "open";
+  if(getState() == "closed" && keyName == entity->name()){
+    setState("open");
     return entity->name() + " used and " + name() + " opened";
-  }else if(state == "open"){
+  }else if(getState() == "open"){
     return name() + " already open";
   }else{
     return "Wrong key";

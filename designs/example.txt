@@ -2,19 +2,19 @@ hall default
 basement default
 kitchen default
 #entities
-fire-axe Axe hall
+axe Axe hall
 big-crate Crate basement closed old-key
 old-key Key N/A 
 old-door Door hall closed kitchen old-key
 hall-stairs Door hall open basement N/A
 base-stairs Door basement open hall N/A
 #messages
-lookhall-stairs default stairs that leads down
-base-stairs default stairs that leads up
+hall-stairs open stairs that leads down
+base-stairs open stairs that leads up
 hall default you are in a hall
 basement default you are in dark basement
 kichten default wow you won
-fire-axe default a sharp axe
+axe default a sharp axe
 big-crate closed a wooden big crate
 big-crate open crate is broken
 old-key default old key that is probably usable

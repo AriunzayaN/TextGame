@@ -35,6 +35,12 @@ void loadAllEntities(vector<string>& entityLines){
         else if(classname == "Door"){
             allEntities[entity[0]] = new Door(entity);    
         }
+        else if(classname == "Readable"){
+            allEntities[entity[0]] = new Readable(entity);    
+        }
+        else if(classname == "Button"){
+            allEntities[entity[0]] = new Button(entity);    
+        }
         else{
             cout << "Unknown entity class name " + classname << endl;
             exit(1);
@@ -70,15 +76,13 @@ string saveTheGame(){
 
 Entity* getEntity(std::string entityName){
     if(allEntities.find(entityName) == allEntities.end()){
-        cout << "Unknown entity name " << entityName << endl;
-        exit(1);
+        return nullptr;
     }
     return allEntities[entityName];
 };
 Place* getPlace(std::string placeName){
     if(allPlaces.find(placeName) == allPlaces.end()){
-        cout << "Unknown place name " << placeName << endl;
-        exit(1);
+        return nullptr;
     }
     return allPlaces[placeName];
 };
@@ -187,7 +191,7 @@ string commandWithFour(string command, string entityOfTarget, string entityOfUse
 };
 
 string log(){
-    string s = "places: ";
+    string s = "LOG: \nplaces: ";
     for(auto& place: allPlaces){
         s += place.first + " ";
     }
@@ -195,10 +199,14 @@ string log(){
     for(auto& entity: allEntities){
         s += entity.first + " ";
     }
-    s += "\ncurrent place: " + allPlaces["current"]->getName();
-    s += "\ncontents of current place: " + allPlaces["current"]->observe();
-    s += "\ncontents of basement place: " + allPlaces["basement"]->observe();
-    s += "\ncontents of inventory: " + allPlaces["inventory"]->observe();
+
+    for(auto& place: allPlaces){
+        s += place.second->observe() + " \n";
+    }
+    // s += "\ncurrent place: " + allPlaces["current"]->getName();
+    // s += "\ncontents of current place: " + allPlaces["current"]->observe();
+    // s += "\ncontents of basement place: " + allPlaces["basement"]->observe();
+    // s += "\ncontents of inventory: " + allPlaces["inventory"]->observe();
 
     return s;
 };

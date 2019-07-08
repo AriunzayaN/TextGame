@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 static map<string, string> allMessages = {{
 "help&help","\
 commands:   use; use []; use [] on []\n\
@@ -14,7 +13,7 @@ commands:   use; use []; use [] on []\n\
             enter [] \n\
             hit [] with []\n"}};
 
-std::string saveMessages;
+string saveMessages;
 
 void loadAllMessages(vector<string>& messageLines){
     for(auto& message : messageLines){
@@ -22,20 +21,29 @@ void loadAllMessages(vector<string>& messageLines){
         string name, state, msg;
         ss >> name >> state;
         getline(ss, msg);
-        allMessages[name + "&" + state] = msg;
+        allMessages[name + "&" + state] = msg.substr(1);
     }
     saveMessages = flatten_lines(messageLines);
 };
 
-std::string getMessage(std::string _name, std::string _state){
+string Place::getState(){
+    return state;
+};
+
+
+string getMessage(string _name, string _state){
     return allMessages[_name + "&" + _state];
 }
 
-std::string saveAllMessages(){
+string saveAllMessages(){
     return saveMessages;
 };
 
 Place::Place(string _name, string _state):name(_name),state(_state){}
+
+void Place::setState(string _state){
+    state = _state;
+}
 
 string Place::getName(){
     return name;
@@ -62,6 +70,6 @@ string Place::remove(string contentName){
     return contentName + " removed from " + name;
 }
 
-std::string Place::save(){
+string Place::save(){
     return name + " " + state;
 }

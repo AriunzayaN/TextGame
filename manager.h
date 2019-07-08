@@ -16,7 +16,6 @@ public:
 
 class Crate: public Entity{
   std::vector<std::string> contents;
-  std::string state;
 public:
   Crate(std::vector<std::string> setup);
   std::string use() override;
@@ -34,8 +33,21 @@ public:
   std::string pickUp() override;
 };
 
+class Button: public Entity{
+  std::string target;
+public:
+  Button(std::vector<std::string> setup);
+  std::string use() override;
+  std::string targeted(Entity *entity) override;
+};
+
+class Readable: public Entity{
+public:
+  Readable(std::vector<std::string> setup);
+  std::string targeted(Entity *entity) override;
+};
+
 class Door: public Entity{
-  std::string state;
   std::string targetPlace;
   std::string keyName;
 public:

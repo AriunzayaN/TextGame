@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-    string testFileName = "designs/example.txt";
+    string testFileName = "designs/lab_scenario.txt";
     loadTheGame(testFileName);
     
     for (string line; getline(cin, line);){
